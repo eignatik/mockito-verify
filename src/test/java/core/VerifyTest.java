@@ -23,18 +23,53 @@ public class VerifyTest {
     }
 
     @Test
-    public void testGetString() throws Exception {
-        Verify saveAndNotify1 = new Verify<>()
+    public void testGetString() {
+        /** predefine verifying conditions **/
+        Verify saveAndNotify1 = new Verify()
                 .checkThat(bar, Mockito.times(1))
-                .called(bar.getClass().getMethod("saveAndNotify", String.class))
-                .eqArgs("fooBar");
+                .calledMethod("saveAndNotify", String.class)
+                .eq("fooBar");
 
-        //lines of logic
+        /** predefine verifying conditions **/
 
-        //invocation is here
+        /** predefine verifying conditions **/
         foo.getString();
 
-        //verify now
+        /** predefine verifying conditions **/
         saveAndNotify1.verify();
+        System.out.println(saveAndNotify1.getInvocationDetails());
+    }
+
+    @Test
+    public void testGetString1() {
+        /** predefine verifying conditions **/
+        Verify saveAndNotify1 = new Verify()
+                .checkThat(bar, Mockito.times(1))
+                .calledMethod("saveAndNotify", String.class)
+                .any(String.class);
+
+        /** predefine verifying conditions **/
+
+        /** predefine verifying conditions **/
+        foo.getString();
+
+        /** predefine verifying conditions **/
+        saveAndNotify1.verify();
+        saveAndNotify1.getInvocationDetails();
+    }
+
+
+    //TODO: example with DataProvider
+    @Test
+    public void testGetPropertyCat() {
+        String property = "cat";
+        Verify verify = new Verify()
+                .checkThat(bar, Mockito.times(1))
+                .calledMethod("saveAndNotify", String.class, String.class, Object.class, String.class, String.class, String.class)
+                .any(String.class).eq("cat").any(Object.class).any(String.class).any(String.class).any(String.class);
+
+        foo.getProperty(property);
+
+        verify.verify();
     }
 }

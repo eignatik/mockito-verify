@@ -18,9 +18,17 @@ public class Foo {
         return "fooBar";
     }
 
+    public String getString(String argument1, Object argument2) {
+        //kind of hard logic, etc
+        bar.saveAndNotify("fooBar", argument1, argument2, "arg4", "arg5", "arg6");
+        return "fooBar";
+    }
+
+
     public String getProperty(String paramName) {
         switch (paramName) {
             case "cat":
+                bar.saveAndNotify("fooBar", "cat", new Object(), "arg4", "arg5", "arg6");
                 return "CAT_PARAM";
             case "dog":
                 return "DOG_PARAM";
