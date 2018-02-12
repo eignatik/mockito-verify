@@ -55,7 +55,6 @@ public class VerifyTest {
 
         /** predefine verifying conditions **/
         saveAndNotify1.verify();
-        saveAndNotify1.getInvocationDetails();
     }
 
 
@@ -71,5 +70,6 @@ public class VerifyTest {
         foo.getProperty(property);
 
         verify.verify();
+        System.out.println(verify.getInvocationDetails());
     }
 }
